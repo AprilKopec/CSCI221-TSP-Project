@@ -7,6 +7,10 @@
 //using namespace Cities;
 using namespace std;
 
+//constructors
+Cities::Cities() = default;
+Cities::Cities(const vector<coord_t> &cityVec) : city_vec(cityVec) {}
+
 
 istream &operator<<(istream &is, Cities &cities) {
     string line;
@@ -42,3 +46,15 @@ double Cities::total_path_distance(const Cities::permutation_t &ordering) const 
     }
     return dist;
 }
+
+// Compute the distance using the already existing ordering TODO
+double Cities::total_path_distance() const {
+    return 0;
+}
+
+int main(){
+    return 0;
+}
+
+
+

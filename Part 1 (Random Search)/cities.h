@@ -14,12 +14,14 @@ public:
     // A pair of integral coordinates for each city
     using coord_t = std::pair<int, int>;
 
+    Cities();
+
     // Initialize a group of Cities with a vector representing the cities in order
     Cities(std::vector<coord_t> cities) : city_vec(cities) {}
 
-    Cities();
-
     Cities(const std::vector<coord_t> &cityVec);
+
+
     // An ordering of cities. Each value represents a unique index
     // into the current city ordering in some container.
     using permutation_t = std::vector<unsigned int>;
