@@ -3,6 +3,8 @@
 #include <iterator>
 #include <vector>
 #include <sstream>
+#include <iostream>
+#include <fstream>
 
 //using namespace Cities;
 using namespace std;
@@ -12,7 +14,7 @@ Cities::Cities() = default;
 Cities::Cities(const vector<coord_t> &cityVec) : city_vec(cityVec) {}
 
 
-istream &operator<<(istream &is, Cities &cities) {
+istream &operator>>(istream &is, Cities &cities) {
     string line;
     while(getline(is,line)){
         istringstream line_stream{line};
@@ -49,10 +51,17 @@ double Cities::total_path_distance(const Cities::permutation_t &ordering) const 
 
 // Compute the distance using the already existing ordering TODO
 double Cities::total_path_distance() const {
-    return 0;
+    double dist = 0.0;
+
+    return dist;
 }
 
 int main(){
+    auto fin = ifstream("five.tsv");
+    Cities cities;
+    fin >> cities;
+    cout << cities.total_path_distance({ 0, 1, 2, 3, 4 }) << "\n"; // Should be 48.8699
+    cout << cities.total_path_distance({ 3, 2, 4, 0, 1 }) << "\n"; // Should be 53.43
     return 0;
 }
 
