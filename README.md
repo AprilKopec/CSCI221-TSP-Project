@@ -1,2 +1,3 @@
-# CSCI221 TSP Project
+# Travelling Saleperson Project
+## Aidan Gibson and April Kopec
  
