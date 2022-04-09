@@ -6,7 +6,12 @@
 //using namespace Cities;
 using namespace std;
 
-
+ostream &operator<<(ostream &os, const Cities &cities) {
+    for (Cities::coord_t coord : cities.city_vec) {
+        os << "city_vec: " << coord.first << "," << coord.second << "\n";
+    }
+    return os;
+}
 
 //MAYBE!!!! on thin ice!!!
 Cities Cities::reorder(const Cities::permutation_t &ordering) const {
