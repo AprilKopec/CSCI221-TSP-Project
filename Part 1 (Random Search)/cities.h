@@ -10,6 +10,9 @@
 // Representation of an ordering of cities
 class Cities {
 public:
+	// Initialize a group of Cities with a vector representing the cities in order
+	Cities(std::vector<coord_t> cities) : city_vec(cities) {};
+
     // A pair of integral coordinates for each city
     using coord_t = std::pair<int, int>;
 
@@ -29,4 +32,10 @@ public:
     // The distance between any two cities is computed as the Euclidean
     // distance on a plane between their coordinates.
     double total_path_distance(const permutation_t& ordering) const;
+	
+	// Compute the distance using the already existing ordering
+	double total_path_distance() const;
+	
+private:
+	std::vector<coord_t> city_vec;
 };
