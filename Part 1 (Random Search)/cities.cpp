@@ -14,6 +14,7 @@ Cities::Cities() = default;
 Cities::Cities(const vector<coord_t> &cityVec) : city_vec(cityVec) {}
 
 
+
 istream &operator>>(istream &is, Cities &cities) {
     string line;
     while(getline(is,line)){
@@ -32,29 +33,38 @@ ostream &operator<<(ostream &os, const Cities &cities) {
     return os;
 }
 
-//MAYBE!!!! on thin ice!!!
 Cities Cities::reorder(const Cities::permutation_t &ordering) const {
-    Cities reordered;
+
+    Cities new_city = {};
     for (const unsigned int i : ordering){
-        reordered.city_vec.push_back(city_vec[i]);
+        new_city.city_vec.push_back(city_vec[i]);
     }
-    return reordered;
+    return new_city;
 }
 
-double Cities::total_path_distance(const Cities::permutation_t &ordering) const {
-    double dist = 0.0;
-    for (unsigned int i = 0; i<ordering.size();i++){
-        dist+=hypot(ordering[i],ordering[(i+1)%ordering.size()]);
-    }
-    return dist;
-}
-
-// Compute the distance using the already existing ordering TODO
+//Compute the distance using the already existing ordering
 double Cities::total_path_distance() const {
     double dist = 0.0;
-
+    //for (auto coord : city_vec){
+    for (unsigned long i = 0; i<city_vec.size();i++){
+        double delta_y = city_vec[(i+1)%city_vec.size()].second - city_vec[i].second;
+        double delta_x = city_vec[(i+1)%city_vec.size()].first - city_vec[i].first;
+        dist+=hypot(delta_y,delta_x); //dist of 1 to the next and back to the first
+    }
     return dist;
 }
+
+
+double Cities::total_path_distance(const Cities::permutation_t &ordering) const {
+    auto cit = reorder(ordering);
+    return cit.total_path_distance();
+}
+    //return dist;
+
+    //this should run it thru reorder first and then run thru total path dist
+//}
+
+
 
 int main(){
     auto fin = ifstream("five.tsv");
