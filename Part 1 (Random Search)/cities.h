@@ -41,7 +41,7 @@ public:
 	double total_path_distance() const;
 
     friend std::ostream &operator<<(std::ostream &os, const Cities &cities);
-
+    friend std::istream &operator<<(std::istream &is, Cities &cities);
 private:
 	std::vector<coord_t> city_vec;
 };
