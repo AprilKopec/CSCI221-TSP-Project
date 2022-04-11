@@ -5,6 +5,8 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
+#include <algorithm>
+#include <random>
 
 using namespace std;
 
@@ -54,21 +56,30 @@ double Cities::total_path_distance(const Cities::permutation_t &ordering) const 
     auto cit = reorder(ordering);
     return cit.total_path_distance();
 }
-    //return dist;
 
-    //this should run it thru reorder first and then run thru total path dist
-//}
+//generates and returns a new permutation of all the numbers from 0 to len-1 (with no skipped or repeated indices). Note that the ordering needs to be "very random" for the search to work well in the next step. You can implement your permutation algorithm any way you like (including STL functions), but please document your algorithm clearly in the code.
+//You will need access to pseudo-random numbers for your permutation algorithm. You can use the C++'s standard library random number generators, like the one explained in this example https://www.cplusplus.com/reference/random/uniform_int_distribution/.
+Cities::permutation_t random_permutation(unsigned len){
+    Cities::permutation_t perm(len); //vector unsigned ints of size len
+    for (unsigned int i = 0; i<len; i++){
+        perm[i]=i;
+    } //now perm is simply {0,1,2,3,...,len-1}
 
-
+    auto rd = random_device {};
+    auto rng = std::default_random_engine { rd() };
+    shuffle(begin(perm),end(perm),rng);
+    return perm;
+}
 
 int main(){
-    auto fin = ifstream("five.tsv");
-    Cities cities;
-    fin >> cities;
+    //auto fin = ifstream("five.tsv");
+    //Cities cities;
+    //fin >> cities;
     //cout << cities;
     //cout << cities.total_path_distance();
-    cout << cities.total_path_distance({ 0, 1, 2, 3, 4 }) << "\n"; // Should be 48.8699
-    cout << cities.total_path_distance({ 3, 2, 4, 0, 1 }) << "\n"; // Should be 53.43
+    //cout << cities.total_path_distance({ 0, 1, 2, 3, 4 }) << "\n"; // Should be 48.8699
+    //cout << cities.total_path_distance(random_permutation(5)) << "\n"; // Should be 53.43
+    Cities::permutation_t perm = random_permutation(5);
     return 0;
 }
 
