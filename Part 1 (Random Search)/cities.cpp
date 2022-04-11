@@ -20,7 +20,7 @@ istream &operator>>(istream &is, Cities &cities) {
 
 ostream &operator<<(ostream &os, const Cities &cities) {
     for (Cities::coord_t coord: cities.city_vec) {
-        os << "city_vec: " << coord.first << "," << coord.second << "\n";
+        os << coord.first << " " << coord.second << "\n";
     }
     return os;
 }

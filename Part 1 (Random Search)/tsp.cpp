@@ -28,9 +28,11 @@ int main(int argc, char *argv[]) {
     }
     //save ordering to a file called "shortest.tsv"
     ofstream MyFile("shortest.tsv");
-    for (unsigned int i: shortest_perm) {
-        MyFile << i << " ";
-    }
+//    for (unsigned int i: shortest_perm) {
+//        MyFile << i << " "; //dont output the perm order, output the actual x,y order so it can be plotted!
+//    }
+    Cities reordered_city = cit.reorder(shortest_perm);
+    MyFile << reordered_city;
     MyFile.close();
     return argc;
 }
