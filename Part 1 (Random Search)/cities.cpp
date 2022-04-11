@@ -6,22 +6,17 @@
 #include <iostream>
 #include <fstream>
 
-//using namespace Cities;
 using namespace std;
 
-//constructors
 Cities::Cities() = default;
-Cities::Cities(const vector<coord_t> &cityVec) : city_vec(cityVec) {}
 
 
 
 istream &operator>>(istream &is, Cities &cities) {
-    string line;
-    while(getline(is,line)){
-        istringstream line_stream{line};
-        Cities::coord_t coord;
-        line_stream >> coord.first >> coord.second;
-        cities.city_vec.push_back(coord);
+    Cities::coord_t coord;
+    while (is >> coord.first){ //if I just do while(is), I get an extra (0,0) coord
+        is >> coord.second;
+        cities.city_vec.push_back(coord); //add the coord to the end of city_vec
     }
     return is;
 }
@@ -35,7 +30,7 @@ ostream &operator<<(ostream &os, const Cities &cities) {
 
 Cities Cities::reorder(const Cities::permutation_t &ordering) const {
 
-    Cities new_city = {};
+    Cities new_city;
     for (const unsigned int i : ordering){
         new_city.city_vec.push_back(city_vec[i]);
     }
@@ -70,8 +65,9 @@ int main(){
     auto fin = ifstream("five.tsv");
     Cities cities;
     fin >> cities;
-    cout << cities.total_path_distance({ 0, 1, 2, 3, 4 }) << "\n"; // Should be 48.8699
-    cout << cities.total_path_distance({ 3, 2, 4, 0, 1 }) << "\n"; // Should be 53.43
+    cout << cities;
+    //cout << cities.total_path_distance({ 0, 1, 2, 3, 4 }) << "\n"; // Should be 48.8699
+    //cout << cities.total_path_distance({ 3, 2, 4, 0, 1 }) << "\n"; // Should be 53.43
     return 0;
 }
 

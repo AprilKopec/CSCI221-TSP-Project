@@ -1,3 +1,3 @@
-# Travelling Saleperson Project
+# Travelling Salesperson Project
 ## Aziz Gibson and April Kopec
  
