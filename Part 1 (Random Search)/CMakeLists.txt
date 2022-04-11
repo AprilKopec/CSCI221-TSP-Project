@@ -7,4 +7,4 @@ configure_file(five.tsv ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
 configure_file(challenge.tsv ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
 configure_file(linear.tsv ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
 
-add_executable(HW9 cities.h cities.cpp)
+add_executable(HW9 cities.h cities.cpp tsp.cpp)
