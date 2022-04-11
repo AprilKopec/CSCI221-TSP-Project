@@ -65,7 +65,8 @@ int main(){
     auto fin = ifstream("five.tsv");
     Cities cities;
     fin >> cities;
-    cout << cities;
+    //cout << cities;
+    cout << cities.total_path_distance();
     //cout << cities.total_path_distance({ 0, 1, 2, 3, 4 }) << "\n"; // Should be 48.8699
     //cout << cities.total_path_distance({ 3, 2, 4, 0, 1 }) << "\n"; // Should be 53.43
     return 0;
